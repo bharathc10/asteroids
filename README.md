@@ -1,148 +1,40 @@
-# Object-Oriented Simulation Engine (Vector Mechanics & Kinematics)
+# 2D Asteroids Game (Object-Oriented Programming Practice)
 
-A frame-independent, two-dimensional simulation engine engineered in Python using Pygame to model rigid-body mechanics, spatial kinematics, and continuous collision detection. Built as a foundational backend engineering project to develop proficiency in object-oriented programming (OOP), simulation architecture, and deterministic game-loop design.
+A two-dimensional arcade game built in Python using Pygame. This project was developed as a practical exercise to master foundational software engineering concepts, state tracking loops, and structural Object-Oriented Programming (OOP).
 
-### ARCHITECTURAL CORE & DESIGN PATTERNS
-The project emphasizes software engineering principles rather than simple gameplay scripting.
+## Core Programming Concepts Applied
 
-Classical Mechanics & Vector Mathematics
+* **Object Inheritance:** Used a unified base class to manage shared properties like 2D positions, velocity vectors, and radius scales across distinct game elements (Player, Asteroid, and Shots).
+* **Vector Mathematics and Kinematics:** Implemented movement mechanics, velocity adjustments, and angular rotation using standard 2D vector translations.
+* **Frame-Rate Decoupling:** Multiplied all physics calculations by delta-time (`dt`) within the main update loop to guarantee identical movement speeds regardless of hardware rendering performance.
+* **Collision Matrices:** Programmed basic radial collision checks (`Distance < Radius_A + Radius_B`) to trigger instant state changes like entity splitting, deletion, and game-over conditions.
 
-- Modeled velocity, acceleration, directional movement, and rotational transformations using vector arithmetic.
-- Implemented coordinate translation logic for movement across a two-dimensional Cartesian space.
-- Applied continuous motion calculations to simulate real-time kinematic behavior.
+## Game Mechanics
 
-Object Inheritance & Polymorphism
+* **Splitting Behavior:** Large asteroids split into smaller, faster fragments when struck by a projectile vector.
+* **Object Lifecycle Management:** Instantiates and removes projectiles from active memory arrays once they cross outside the visual boundaries of the screen.
 
-- Created a shared base entity class responsible for position tracking, movement behavior, and collision boundaries.
-- Derived specialized entities such as:
-    - Player
-    - Projectile
-    - Asteroid
-- Leveraged inheritance to minimize duplicated logic while enabling entity-specific behavior.
+## Setup and Execution
 
-Deterministic State Updates
+### 1. Install Pygame
 
-- Implemented delta-time (dt) propagation throughout the simulation loop.
-- Physics calculations remain consistent regardless of rendering frame rate.
-- Prevents simulation speed from varying across different hardware configurations.
+Ensure Python 3 is installed, then pull the required graphics library:
 
-Spatial Collision Detection
-
-- Used circular collision boundaries for efficient overlap testing.
-- Evaluated real-time entity intersections using distance calculations.
-- Triggered state transitions including:
-    - Asteroid fragmentation
-    - Projectile removal
-    - Entity destruction
-    - Score updates
-
-### SYSTEM CAPABILITIES & LOGIC FLOW
-Kinetic Splitting Mechanics
-
-- Large asteroid entities fragment into smaller asteroids when impacted.
-- Newly generated fragments inherit modified velocity vectors.
-- Creates a cascading destruction and movement system.
-
-Encapsulated Input Processing
-
-- Keyboard events are separated from simulation logic.
-- Input handlers communicate movement intent to game entities.
-- Maintains clean separation between control systems and physics systems.
-
-Projectile Lifecycle Management
-
-- Dynamically spawns projectile objects during runtime.
-- Continuously tracks projectile positions.
-- Automatically removes projectiles once they leave the visible viewport.
-- Prevents unnecessary memory growth during extended sessions.
-
-### TECHNICAL ARCHITECTURE
-
-.
-├── main.py
-│   Primary simulation loop and runtime initialization
-│
-├── player.py
-│   Player movement and rotation behavior
-│
-├── asteroid.py
-│   Asteroid entity definitions and fragmentation logic
-│
-├── asteroidfield.py
-│   Asteroid spawning and field management
-│
-├── shot.py
-│   Projectile creation and movement
-│
-├── circleshape.py
-│   Shared collision and geometric calculations
-│
-├── constants.py
-│   Global simulation constants and configuration values
-│
-└── assets/
-    Supporting graphical resources
-
-### CORE ENGINEERING CONCEPTS DEMONSTRATED
-Object-Oriented Programming
-
-- Classes
-- Inheritance
-- Encapsulation
-- Polymorphism
-- Composition
-
-Simulation Engineering
-
-- Deterministic game loops
-- Delta-time integration
-- Real-time state management
-- Dynamic object creation and destruction
-
-Mathematics
-
-- Vector arithmetic
-- Distance calculations
-- Angular rotation
-- Coordinate transformations
-
-Software Design
-
-- Separation of concerns
-- Reusable entity hierarchies
-- Modular architecture
-- Low-coupling component design
-
-### DEPLOYMENT & LOCAL EXECUTION
-1. Install Dependencies
-
+```bash
 pip install pygame
+```
 
-2. Clone Repository
+### 2. Run the Game
 
+Clone the repository and launch the main entry point:
+
+```bash
 git clone https://github.com/bharathc10/asteroids.git
-
-3. Enter Project Directory
-
 cd asteroids
-
-4. Start Simulation
-
 python3 main.py
+```
 
-### SIMULATION NAVIGATION CONTROLS
-Angular Rotation
+## Controls
 
-A / D
-or
-Left / Right Arrow Keys
-
-Kinetic Acceleration
-
-W / S
-or
-Up / Down Arrow Keys
-
-Projectile Discharge
-
-Spacebar
+* `W/S/A/D` or Arrow Keys to move and rotate.
+* `Spacebar` to fire projectiles.
